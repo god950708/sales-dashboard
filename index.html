@@ -228,7 +228,7 @@ function renderApp() {
       ${TABS.map((t,i)=>`<button class="tab-btn" style="--tc:${TAB_COLORS[i]}" onclick="renderTab(${i})">${t}</button>`).join("")}
     </div>
     <div class="cards" id="cards"></div>
-    ${tabName === "해피콜" ? `
+    ${idx === 0 ? `
     <div class="section-title">담당자별 총 시도 / 성공</div>
     <div class="chart-wrap"><canvas id="chartMemberTotal" height="200"></canvas></div>` : ""}
     <div class="section-title">일별 시도 / 성공 (최근 7일)</div>
