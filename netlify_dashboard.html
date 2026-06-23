@@ -187,8 +187,8 @@ function renderTab(idx) {
   ]);
   makeChart("chartDaily", daily.map(r=>r.label), barDatasets);
 
-  // 해피콜 담당자별 총 시도/성공 차트
-  if (tabName === "해피콜") {
+  // 해피콜 담당자별 총 시도/성공 차트 (탭 인덱스 0 = 해피콜)
+  if (tabIdx === 0) {
     const memberTotalData = memberStats.map((m, i) => ({
       name: m.name,
       시도: allRows.reduce((s, r) => s + n(r[cfg.tries[i]]), 0),
@@ -200,14 +200,6 @@ function renderTab(idx) {
         { label:"시도", data: memberTotalData.map(m => m.시도), backgroundColor: memberStats.map((_,i) => PALETTE[i][0]), borderRadius:4 },
         { label:"성공", data: memberTotalData.map(m => m.성공), backgroundColor: memberStats.map((_,i) => PALETTE[i][1]), borderRadius:4 },
       ]
-    );
-  }
-
-  // 담당자별 성공률 차트 (해피콜 제외)
-  if (tabName !== "해피콜") {
-    makeChart("chartRate",
-      memberStats.map(m => m.name),
-      [{ label:"성공률 (%)", data: memberStats.map(m => m.try > 0 ? parseFloat(((m.suc/m.try)*100).toFixed(1)) : 0), backgroundColor: memberStats.map(m => m.color), borderRadius:4 }]
     );
   }
 
@@ -228,7 +220,7 @@ function renderApp() {
       ${TABS.map((t,i)=>`<button class="tab-btn" style="--tc:${TAB_COLORS[i]}" onclick="renderTab(${i})">${t}</button>`).join("")}
     </div>
     <div class="cards" id="cards"></div>
-    ${idx === 0 ? `
+    ${tabIdx === 0 ? `
     <div class="section-title">담당자별 총 시도 / 성공</div>
     <div class="chart-wrap"><canvas id="chartMemberTotal" height="200"></canvas></div>` : ""}
     <div class="section-title">일별 시도 / 성공 (최근 7일)</div>
