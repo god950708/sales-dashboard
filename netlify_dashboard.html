@@ -197,8 +197,8 @@ function renderTab(idx) {
     makeChart("chartMemberTotal",
       memberTotalData.map(m => m.name),
       [
-        { label:"시도", data: memberTotalData.map(m => m.시도), backgroundColor: memberStats.map((_,i) => PALETTE[i][0]), borderRadius:4 },
-        { label:"성공", data: memberTotalData.map(m => m.성공), backgroundColor: memberStats.map((_,i) => PALETTE[i][1]), borderRadius:4 },
+        { label:"시도", data: memberTotalData.map(m => m.시도), backgroundColor: memberStats.map((_, i) => PALETTE[i][0]), borderRadius:4 },
+        { label:"성공", data: memberTotalData.map(m => m.성공), backgroundColor: memberStats.map((_, i) => PALETTE[i][1]), borderRadius:4 },
       ]
     );
   }
